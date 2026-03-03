@@ -124,9 +124,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
               <>
                 {showDivider && (
                   <tr key={`divider-${i}`}>
-                    <td colSpan={12} style={{ padding: "2px 8px", background: "#161616", borderTop: "1px solid #333", borderBottom: "1px solid #333" }}>
-                      <span style={{ fontSize: "9px", color: "#444", letterSpacing: "0.12em", fontWeight: 700 }}>BENCH</span>
-                    </td>
+                    <td colSpan={12} style={{ padding: 0, height: "1px", background: "#333" }} />
                   </tr>
                 )}
                 <tr
