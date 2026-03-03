@@ -82,6 +82,7 @@ function transformPlayers(teamData: any): any[] {
         to: toInt(s[7]),
         pm: toInt(s[13]),
         min: parseInt(minRaw.split(":")[0], 10) || 0,
+        starter: a.starter === true,
       };
     });
 }

@@ -119,8 +119,14 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
             const isExpanded = expandedPlayer === p.name;
             const pm = p.pm ?? 0;
             const bg = rowBg(i, isExpanded);
+            const showDivider = i > 0 && !p.starter && players[i - 1]?.starter;
             return (
               <>
+                {showDivider && (
+                  <tr key={`divider-${i}`}>
+                    <td colSpan={12} style={{ padding: 0, height: "1px", background: "#2a2a2a" }} />
+                  </tr>
+                )}
                 <tr
                   key={p.name}
                   onClick={() => toggle(p.name)}
