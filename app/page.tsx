@@ -70,7 +70,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
   return (
     <tr style={{ background: "#0d0d0d", borderBottom: "1px solid #333" }}>
       <td colSpan={3} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#444", letterSpacing: "0.08em", whiteSpace: "nowrap", position: "sticky", left: 0, background: "#0d0d0d", zIndex: 1 }}>
-        25 AVG · {stats.gp}GP
+        25-26 AVG · {stats.gp}GP
       </td>
       {cell(`${stats.pts}`, accentColor)}
       {cell(`${stats.reb}`)}
