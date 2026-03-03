@@ -61,6 +61,7 @@ function transformPlayers(teamData: any): any[] {
   const athletes: any[] = teamData?.statistics?.[0]?.athletes ?? [];
   return athletes
     .filter((a: any) => a.stats?.length > 0 && a.stats[0] !== "0:00" && a.stats[0] !== "DNP")
+    .sort((a: any, b: any) => (b.starter ? 1 : 0) - (a.starter ? 1 : 0) || toInt(b.stats?.[1]) - toInt(a.stats?.[1]))
     .map((a: any) => {
       const s = a.stats;
       const [fgm, fga] = parseSplit(s[2] ?? "0-0");
@@ -82,8 +83,7 @@ function transformPlayers(teamData: any): any[] {
         pm: toInt(s[13]),
         min: parseInt(minRaw.split(":")[0], 10) || 0,
       };
-    })
-    .sort((a: any, b: any) => b.pts - a.pts);
+    });
 }
 
 function transformCompetitor(c: any) {
