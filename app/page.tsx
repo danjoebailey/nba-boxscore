@@ -176,8 +176,8 @@ function GameCard({ game }: { game: any }) {
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-              <TeamLogo abbr={game.away.abbr} size={34} />
-              <span style={{ fontSize: "10px", fontWeight: 800, color: winner === "away" ? "#fff" : "#555", letterSpacing: "0.05em" }}>{game.away.abbr}</span>
+              <TeamLogo abbr={game.away.abbr} size={52} />
+              <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "away" ? "#fff" : "#555", letterSpacing: "0.05em" }}>{game.away.abbr}</span>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: "100px", justifyContent: "center" }}>
@@ -187,8 +187,8 @@ function GameCard({ game }: { game: any }) {
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-              <TeamLogo abbr={game.home.abbr} size={34} />
-              <span style={{ fontSize: "10px", fontWeight: 800, color: winner === "home" ? "#fff" : "#555", letterSpacing: "0.05em" }}>{game.home.abbr}</span>
+              <TeamLogo abbr={game.home.abbr} size={52} />
+              <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "home" ? "#fff" : "#555", letterSpacing: "0.05em" }}>{game.home.abbr}</span>
             </div>
           </div>
         </div>
@@ -281,8 +281,8 @@ export default function Home() {
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                      <TeamLogo abbr={g.awayAbbr} size={30} />
-                      <span style={{ fontSize: "10px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
+                      <TeamLogo abbr={g.awayAbbr} size={46} />
+                      <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
                     </div>
                     <div style={{ fontSize: "28px", fontWeight: 900, color: g.awayScore > g.homeScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{g.awayScore}</div>
                   </div>
@@ -293,8 +293,8 @@ export default function Home() {
                   <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
                     <div style={{ fontSize: "28px", fontWeight: 900, color: g.homeScore > g.awayScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{g.homeScore}</div>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                      <TeamLogo abbr={g.homeAbbr} size={30} />
-                      <span style={{ fontSize: "10px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
+                      <TeamLogo abbr={g.homeAbbr} size={46} />
+                      <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
                     </div>
                   </div>
                 </div>
@@ -310,8 +310,8 @@ export default function Home() {
               <div key={i} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: "10px", padding: "12px 16px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                    <TeamLogo abbr={g.awayAbbr} size={22} />
-                    <span style={{ fontSize: "9px", fontWeight: 800, color: "#777", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
+                    <TeamLogo abbr={g.awayAbbr} size={36} />
+                    <span style={{ fontSize: "11px", fontWeight: 800, color: "#777", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
                   </div>
                 </div>
                 <div style={{ textAlign: "center", flexShrink: 0 }}>
@@ -320,8 +320,8 @@ export default function Home() {
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1, justifyContent: "flex-end" }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                    <TeamLogo abbr={g.homeAbbr} size={22} />
-                    <span style={{ fontSize: "9px", fontWeight: 800, color: "#777", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
+                    <TeamLogo abbr={g.homeAbbr} size={36} />
+                    <span style={{ fontSize: "11px", fontWeight: 800, color: "#777", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
                   </div>
                 </div>
               </div>
