@@ -131,11 +131,13 @@ export async function GET() {
 
   const games = finalEvents.map((event, i) => {
     const comp = event.competitions[0];
-    const away = comp.competitors[0];
-    const home = comp.competitors[1];
+    const home = comp.competitors.find((c: any) => c.homeAway === "home") ?? comp.competitors[1];
+    const away = comp.competitors.find((c: any) => c.homeAway === "away") ?? comp.competitors[0];
     const box = boxScores[i];
-    const awayPlayers = box ? transformPlayers(box.boxscore?.players?.[0]) : [];
-    const homePlayers = box ? transformPlayers(box.boxscore?.players?.[1]) : [];
+    const homeId = home.team?.id;
+    const awayId = away.team?.id;
+    const homePlayers = box ? transformPlayers(box.boxscore?.players?.find((p: any) => p.team?.id === homeId)) : [];
+    const awayPlayers = box ? transformPlayers(box.boxscore?.players?.find((p: any) => p.team?.id === awayId)) : [];
     return {
       id: event.id,
       home: transformCompetitor(home),
@@ -148,8 +150,8 @@ export async function GET() {
   const live = liveEvents.map((event) => {
     const comp = event.competitions[0];
     const status = comp.status;
-    const away = comp.competitors[0];
-    const home = comp.competitors[1];
+    const home = comp.competitors.find((c: any) => c.homeAway === "home") ?? comp.competitors[1];
+    const away = comp.competitors.find((c: any) => c.homeAway === "away") ?? comp.competitors[0];
     return {
       homeAbbr: home.team?.abbreviation ?? "",
       homeName: home.team?.displayName ?? "",
@@ -164,8 +166,8 @@ export async function GET() {
 
   const upcoming = upcomingEvents.map((event) => {
     const comp = event.competitions[0];
-    const away = comp.competitors[0];
-    const home = comp.competitors[1];
+    const home = comp.competitors.find((c: any) => c.homeAway === "home") ?? comp.competitors[1];
+    const away = comp.competitors.find((c: any) => c.homeAway === "away") ?? comp.competitors[0];
     const time = new Date(event.date).toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
