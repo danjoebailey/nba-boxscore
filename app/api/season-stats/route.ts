@@ -18,19 +18,30 @@ function findStat(categories: any[], name: string): number | null {
   return null;
 }
 
+// "J. Brown" → "Brown", "R. Harper Jr." → "Harper Jr.", "OG Anunoby" → "OG Anunoby"
+function extractLastName(name: string) {
+  const dotIdx = name.indexOf(". ");
+  return dotIdx !== -1 ? name.slice(dotIdx + 2) : name;
+}
+
+async function searchAthlete(query: string): Promise<string | null> {
+  const res = await fetch(
+    `${ESPN_SEARCH}?query=${encodeURIComponent(query)}&limit=5&type=player&sport=basketball&league=nba`,
+    { next: { revalidate: 86400 } }
+  );
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data.items?.[0]?.id ?? null;
+}
+
 export async function POST(req: NextRequest) {
   const { playerName } = await req.json();
 
-  // 1. Resolve athlete ID via ESPN search
-  const searchRes = await fetch(
-    `${ESPN_SEARCH}?query=${encodeURIComponent(playerName)}&limit=5&type=player&sport=basketball&league=nba`,
-    { next: { revalidate: 86400 } }
-  );
-  if (!searchRes.ok) {
-    return NextResponse.json({ error: "Search failed" }, { status: 502 });
+  // 1. Resolve athlete ID — try full name first, fall back to last name only
+  let athleteId = await searchAthlete(playerName);
+  if (!athleteId) {
+    athleteId = await searchAthlete(extractLastName(playerName));
   }
-  const search = await searchRes.json();
-  const athleteId = search.items?.[0]?.id;
   if (!athleteId) {
     return NextResponse.json({ error: "Player not found" }, { status: 404 });
   }
