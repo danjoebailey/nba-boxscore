@@ -197,19 +197,25 @@ function GameCard({ game }: { game: any }) {
       {expanded && (
         <div style={{ borderTop: "1px solid #1d1d1d" }}>
           <div style={{ padding: "12px 16px", borderBottom: "1px solid #1a1a1a" }}>
-            <div style={{ display: "flex", gap: "4px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: `auto repeat(${game.away.q.length}, 1fr)`, gap: "4px", alignItems: "center" }}>
+              <div />
+              {game.away.q.map((_: number, i: number) => (
+                <div key={i} style={{ fontSize: "9px", color: "#666", textAlign: "center" }}>
+                  {i < 4 ? `Q${i + 1}` : `OT${i - 3}`}
+                </div>
+              ))}
+              <div style={{ fontSize: "10px", fontWeight: 700, color: "#888", letterSpacing: "0.04em", paddingRight: "8px" }}>{game.away.abbr}</div>
               {game.away.q.map((q: number, i: number) => {
                 const hq = game.home.q[i];
-                const label = i < 4 ? `Q${i + 1}` : `OT${i - 3}`;
                 return (
-                  <div key={i} style={{ flex: 1, background: "#0d0d0d", borderRadius: "6px", padding: "6px 4px", textAlign: "center" }}>
-                    <div style={{ fontSize: "9px", color: "#666", marginBottom: "4px" }}>{label}</div>
-                    <div style={{ fontSize: "12px", fontWeight: 700, color: q > hq ? "#fff" : "#555" }}>{q}</div>
-                    <div style={{ fontSize: "12px", fontWeight: 700, color: hq > q ? "#fff" : "#555" }}>{hq}</div>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px", fontSize: "8px", color: "#555" }}>
-                      <span>{game.away.abbr}</span><span>{game.home.abbr}</span>
-                    </div>
-                  </div>
+                  <div key={i} style={{ background: "#0d0d0d", borderRadius: "4px", padding: "6px 4px", textAlign: "center", fontSize: "12px", fontWeight: 700, color: q > hq ? "#fff" : "#555" }}>{q}</div>
+                );
+              })}
+              <div style={{ fontSize: "10px", fontWeight: 700, color: "#888", letterSpacing: "0.04em", paddingRight: "8px" }}>{game.home.abbr}</div>
+              {game.home.q.map((hq: number, i: number) => {
+                const q = game.away.q[i];
+                return (
+                  <div key={i} style={{ background: "#0d0d0d", borderRadius: "4px", padding: "6px 4px", textAlign: "center", fontSize: "12px", fontWeight: 700, color: hq > q ? "#fff" : "#555" }}>{hq}</div>
                 );
               })}
             </div>
