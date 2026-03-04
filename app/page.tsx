@@ -40,7 +40,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
       .catch(() => { setError(true); setLoading(false); });
   }, [playerName]);
 
-  const cell = (val: string, color = "#888") => (
+  const cell = (val: string, color = "#aaa") => (
     <td style={{ padding: "8px 6px", textAlign: "center", color, fontSize: "11px" }}>{val}</td>
   );
 
@@ -69,15 +69,15 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
 
   return (
     <tr style={{ background: "#0d0d0d", borderBottom: "1px solid #333" }}>
-      <td colSpan={2} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#444", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
+      <td colSpan={2} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#666", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
         25-26 AVG · {stats.gp}GP
       </td>
-      {cell(`${stats.mpg}`, "#444")}
+      {cell(`${stats.mpg}`, "#666")}
       {cell(`${stats.pts}`, accentColor)}
       {cell(`${stats.reb}`)}
       {cell(`${stats.ast}`)}
-      {cell(`${stats.fg_pct}%`, "#888")}
-      {cell(`${stats.three_pct}%`, "#888")}
+      {cell(`${stats.fg_pct}%`, "#aaa")}
+      {cell(`${stats.three_pct}%`, "#aaa")}
       {cell(`${stats.stl}`)}
       {cell(`${stats.blk}`)}
       {cell(`${stats.to}`)}
@@ -88,7 +88,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
 function PlayerTable({ players, accentColor }: { players: any[]; accentColor: string }) {
   const [expandedPlayer, setExpandedPlayer] = useState<string | null>(null);
   const toggle = (name: string) => setExpandedPlayer(prev => prev === name ? null : name);
-  const pmColor = (pm: number) => pm > 0 ? "#4ade80" : pm < 0 ? "#f87171" : "#555";
+  const pmColor = (pm: number) => pm > 0 ? "#4ade80" : pm < 0 ? "#f87171" : "#666";
   const pmLabel = (pm: number) => pm > 0 ? `+${pm}` : `${pm}`;
   const rowBg = (i: number, isExpanded: boolean) => {
     if (isExpanded) return "#161616";
@@ -99,7 +99,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
     <div style={{ overflowX: "auto" }}>
       <table style={{ borderCollapse: "collapse", fontSize: "12px" }}>
         <thead>
-          <tr style={{ color: "#666", borderBottom: "1px solid #222" }}>
+          <tr style={{ color: "#999", borderBottom: "1px solid #222" }}>
             <th style={{ textAlign: "left", padding: "6px 8px", fontWeight: 600, letterSpacing: "0.05em", whiteSpace: "nowrap", position: "sticky", left: 0, background: "#111", zIndex: 2 }}>PLAYER</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>POS</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>MIN</th>
@@ -133,19 +133,19 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
                   style={{ borderBottom: isExpanded ? "none" : "1px solid #1a1a1a", background: isExpanded ? "#161616" : i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)", cursor: "pointer" }}
                 >
                   <td style={{ padding: "8px 8px", fontWeight: 600, whiteSpace: "nowrap", color: isExpanded ? "#fff" : "#f0f0f0", position: "sticky", left: 0, zIndex: 1, background: bg }}>
-                    <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#333" }}>{isExpanded ? "▼" : "▶"}</span>
+                    <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#555" }}>{isExpanded ? "▼" : "▶"}</span>
                     {p.name}
                   </td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#555", fontSize: "11px" }}>{p.pos}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#555", fontSize: "11px" }}>{p.min}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#888", fontSize: "11px" }}>{p.pos}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#888", fontSize: "11px" }}>{p.min}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: accentColor, fontSize: "14px" }}>{p.pts}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#ccc" }}>{p.reb}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#ccc" }}>{p.ast}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#999", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#999", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#777" }}>{p.stl}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#777" }}>{p.blk}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#777" }}>{p.to}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#bbb", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#bbb", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#aaa" }}>{p.stl}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#aaa" }}>{p.blk}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#aaa" }}>{p.to}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: pmColor(pm), fontSize: "12px" }}>{pmLabel(pm)}</td>
                 </tr>
                 {isExpanded && (
@@ -203,10 +203,10 @@ function GameCard({ game }: { game: any }) {
                 const label = i < 4 ? `Q${i + 1}` : `OT${i - 3}`;
                 return (
                   <div key={i} style={{ flex: 1, background: "#0d0d0d", borderRadius: "6px", padding: "6px 4px", textAlign: "center" }}>
-                    <div style={{ fontSize: "9px", color: "#444", marginBottom: "4px" }}>{label}</div>
+                    <div style={{ fontSize: "9px", color: "#666", marginBottom: "4px" }}>{label}</div>
                     <div style={{ fontSize: "12px", fontWeight: 700, color: q > hq ? "#fff" : "#555" }}>{q}</div>
                     <div style={{ fontSize: "12px", fontWeight: 700, color: hq > q ? "#fff" : "#555" }}>{hq}</div>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px", fontSize: "8px", color: "#333" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px", fontSize: "8px", color: "#555" }}>
                       <span>{game.away.abbr}</span><span>{game.home.abbr}</span>
                     </div>
                   </div>
