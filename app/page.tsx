@@ -253,11 +253,11 @@ export default function Home() {
   const date = data?.date ?? "";
 
   return (
-    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Mono', 'Courier New', monospace", color: "#fff", maxWidth: "480px", margin: "0 auto", padding: "0 0 40px" }}>
+    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'IBM Plex Mono', 'Courier New', monospace", color: "#fff", maxWidth: "480px", margin: "0 auto", padding: "0 0 40px" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Bebas+Neue&display=swap');
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        * { box-sizing: border-box; font-feature-settings: "zero" 0; }
+        * { box-sizing: border-box; }
         ::-webkit-scrollbar { height: 4px; background: #111; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
       `}</style>
