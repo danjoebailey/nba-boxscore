@@ -253,7 +253,7 @@ export default function Home() {
   const date = data?.date ?? "";
 
   return (
-    <div style={{ background: "#1A1208", minHeight: "100vh", fontFamily: "'IBM Plex Mono', 'Courier New', monospace", color: "#fff", maxWidth: "480px", margin: "0 auto", padding: "0 0 40px" }}>
+    <div style={{ background: "#C8943A", minHeight: "100vh", fontFamily: "'IBM Plex Mono', 'Courier New', monospace", color: "#fff", maxWidth: "480px", margin: "0 auto", padding: "0 0 40px" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Bebas+Neue&display=swap');
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -262,10 +262,10 @@ export default function Home() {
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
       `}</style>
 
-      <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid #2A1C0A", position: "sticky", top: 0, background: "#1A1208", zIndex: 10 }}>
+      <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid #A07428", position: "sticky", top: 0, background: "#C8943A", zIndex: 10 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-          <h1 style={{ fontSize: "28px", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em", color: "#fff", margin: 0 }}>NBA SCORES</h1>
-          <span style={{ fontSize: "11px", color: "#444", letterSpacing: "0.05em" }}>{date}</span>
+          <h1 style={{ fontSize: "28px", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em", color: "#111", margin: 0 }}>NBA SCORES</h1>
+          <span style={{ fontSize: "11px", color: "#6B4A1A", letterSpacing: "0.05em" }}>{date}</span>
         </div>
       </div>
 
@@ -305,7 +305,7 @@ export default function Home() {
 
         {upcoming.length > 0 && (
           <div style={{ marginBottom: "20px" }}>
-            <div style={{ fontSize: "10px", color: "#555", letterSpacing: "0.15em", fontWeight: 700, marginBottom: "8px" }}>UPCOMING</div>
+            <div style={{ fontSize: "10px", color: "#6B4A1A", letterSpacing: "0.15em", fontWeight: 700, marginBottom: "8px" }}>UPCOMING</div>
             {upcoming.map((g, i) => (
               <div key={i} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: "10px", padding: "12px 16px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
@@ -331,13 +331,13 @@ export default function Home() {
 
         {games.length > 0 && (
           <>
-            <div style={{ fontSize: "10px", color: "#555", letterSpacing: "0.15em", fontWeight: 700, marginBottom: "8px" }}>FINAL</div>
+            <div style={{ fontSize: "10px", color: "#6B4A1A", letterSpacing: "0.15em", fontWeight: 700, marginBottom: "8px" }}>FINAL</div>
             {games.map(g => <GameCard key={g.id} game={g} />)}
           </>
         )}
 
         {!data && (
-          <div style={{ textAlign: "center", color: "#333", fontSize: "12px", paddingTop: "40px" }}>Loading…</div>
+          <div style={{ textAlign: "center", color: "#6B4A1A", fontSize: "12px", paddingTop: "40px" }}>Loading…</div>
         )}
       </div>
     </div>
