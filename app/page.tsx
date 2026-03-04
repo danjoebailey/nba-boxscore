@@ -257,7 +257,7 @@ export default function Home() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap');
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; font-feature-settings: "zero" 0; }
         ::-webkit-scrollbar { height: 4px; background: #111; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
       `}</style>
