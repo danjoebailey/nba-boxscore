@@ -47,9 +47,9 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
   if (loading) {
     return (
       <tr>
-        <td colSpan={COLS} style={{ padding: "10px 12px", background: "#0d0d0d", borderBottom: "1px solid #1a1a1a" }}>
+        <td colSpan={COLS} style={{ padding: "10px 12px", background: "#190E05", borderBottom: "1px solid #2E2010" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#555", fontSize: "11px" }}>
-            <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", background: "#333", animation: "pulse 1s infinite" }} />
+            <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", background: "#4A3418", animation: "pulse 1s infinite" }} />
             Loading season averages…
           </div>
         </td>
@@ -60,7 +60,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
   if (error || !stats) {
     return (
       <tr>
-        <td colSpan={COLS} style={{ padding: "8px 12px", background: "#0d0d0d", color: "#555", fontSize: "11px", borderBottom: "1px solid #1a1a1a" }}>
+        <td colSpan={COLS} style={{ padding: "8px 12px", background: "#190E05", color: "#555", fontSize: "11px", borderBottom: "1px solid #2E2010" }}>
           Could not load season stats.
         </td>
       </tr>
@@ -68,7 +68,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
   }
 
   return (
-    <tr style={{ background: "#0d0d0d", borderBottom: "1px solid #333" }}>
+    <tr style={{ background: "#190E05", borderBottom: "1px solid #4A3418" }}>
       <td colSpan={2} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#666", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
         25-26 AVG · {stats.gp}GP
       </td>
@@ -91,16 +91,16 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
   const pmColor = (pm: number) => pm > 0 ? "#4ade80" : pm < 0 ? "#f87171" : "#666";
   const pmLabel = (pm: number) => pm > 0 ? `+${pm}` : `${pm}`;
   const rowBg = (i: number, isExpanded: boolean) => {
-    if (isExpanded) return "#161616";
-    return i % 2 === 0 ? "#111" : "#131313";
+    if (isExpanded) return "#271C0B";
+    return i % 2 === 0 ? "#221809" : "#25190A";
   };
 
   return (
     <div style={{ overflowX: "auto" }}>
       <table style={{ borderCollapse: "collapse", fontSize: "12px" }}>
         <thead>
-          <tr style={{ color: "#999", borderBottom: "1px solid #222" }}>
-            <th style={{ textAlign: "left", padding: "6px 8px", fontWeight: 600, letterSpacing: "0.05em", whiteSpace: "nowrap", position: "sticky", left: 0, background: "#111", zIndex: 2 }}>PLAYER</th>
+          <tr style={{ color: "#999", borderBottom: "1px solid #382810" }}>
+            <th style={{ textAlign: "left", padding: "6px 8px", fontWeight: 600, letterSpacing: "0.05em", whiteSpace: "nowrap", position: "sticky", left: 0, background: "#221809", zIndex: 2 }}>PLAYER</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>POS</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>MIN</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600, color: accentColor }}>PTS</th>
@@ -124,13 +124,13 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
               <>
                 {showDivider && (
                   <tr key={`divider-${i}`}>
-                    <td colSpan={12} style={{ padding: 0, height: "1px", background: "#333" }} />
+                    <td colSpan={12} style={{ padding: 0, height: "1px", background: "#4A3418" }} />
                   </tr>
                 )}
                 <tr
                   key={p.name}
                   onClick={() => toggle(p.name)}
-                  style={{ borderBottom: isExpanded ? "none" : "1px solid #1a1a1a", background: isExpanded ? "#161616" : i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)", cursor: "pointer" }}
+                  style={{ borderBottom: isExpanded ? "none" : "1px solid #2E2010", background: isExpanded ? "#271C0B" : i % 2 === 0 ? "transparent" : "rgba(255,200,100,0.03)", cursor: "pointer" }}
                 >
                   <td style={{ padding: "8px 8px", fontWeight: 600, whiteSpace: "nowrap", color: isExpanded ? "#fff" : "#f0f0f0", position: "sticky", left: 0, zIndex: 1, background: bg }}>
                     <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#555" }}>{isExpanded ? "▼" : "▶"}</span>
@@ -167,7 +167,7 @@ function GameCard({ game }: { game: any }) {
   const isOT = game.home.q.length > 4;
 
   return (
-    <div style={{ background: "#111", border: "1px solid #222", borderRadius: "12px", overflow: "hidden", marginBottom: "12px" }}>
+    <div style={{ background: "#221809", border: "1px solid #382810", borderRadius: "12px", overflow: "hidden", marginBottom: "12px" }}>
       <div onClick={() => setExpanded(e => !e)} style={{ cursor: "pointer", padding: "16px 20px", userSelect: "none" }}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "12px", position: "relative" }}>
           <span style={{ fontSize: "11px", color: "#555", letterSpacing: "0.1em", fontWeight: 600 }}>{isOT ? "FINAL/OT" : "FINAL"}</span>
@@ -182,7 +182,7 @@ function GameCard({ game }: { game: any }) {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: "100px", justifyContent: "center" }}>
             <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "away" ? "#fff" : "#444", letterSpacing: "-0.03em" }}>{game.away.score}</span>
-            <span style={{ color: "#333", fontSize: "16px" }}>–</span>
+            <span style={{ color: "#4A3418", fontSize: "16px" }}>–</span>
             <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "home" ? "#fff" : "#444", letterSpacing: "-0.03em" }}>{game.home.score}</span>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
@@ -195,14 +195,14 @@ function GameCard({ game }: { game: any }) {
       </div>
 
       {expanded && (
-        <div style={{ borderTop: "1px solid #1d1d1d" }}>
-          <div style={{ padding: "12px 16px", borderBottom: "1px solid #1a1a1a" }}>
+        <div style={{ borderTop: "1px solid #2E2010" }}>
+          <div style={{ padding: "12px 16px", borderBottom: "1px solid #2E2010" }}>
             <div style={{ display: "flex", gap: "4px" }}>
               {game.away.q.map((q: number, i: number) => {
                 const hq = game.home.q[i];
                 const label = i < 4 ? `Q${i + 1}` : `OT${i - 3}`;
                 return (
-                  <div key={i} style={{ flex: 1, background: "#0d0d0d", borderRadius: "6px", padding: "6px 4px", textAlign: "center" }}>
+                  <div key={i} style={{ flex: 1, background: "#190E05", borderRadius: "6px", padding: "6px 4px", textAlign: "center" }}>
                     <div style={{ fontSize: "9px", color: "#666", marginBottom: "4px" }}>{label}</div>
                     <div style={{ fontSize: "12px", fontWeight: 700, color: q > hq ? "#fff" : "#555" }}>{q}</div>
                     <div style={{ fontSize: "12px", fontWeight: 700, color: hq > q ? "#fff" : "#555" }}>{hq}</div>
@@ -214,14 +214,14 @@ function GameCard({ game }: { game: any }) {
               })}
             </div>
           </div>
-          <div style={{ display: "flex", borderBottom: "1px solid #1a1a1a" }}>
+          <div style={{ display: "flex", borderBottom: "1px solid #2E2010" }}>
             {["away", "home"].map(side => {
               const team = game[side];
               const isActive = activeTeam === side;
               const isLight = team.color === "#FFFFFF" || team.color === "#AAAAAA";
               const underline = isLight ? "#aaa" : team.color;
               return (
-                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "#1a1a1a" : "transparent", color: isActive ? "#fff" : "#555", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
+                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "#2E2010" : "transparent", color: isActive ? "#fff" : "#555", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
                   <TeamLogo abbr={team.abbr} size={18} />
                   {team.name}
                 </button>
@@ -253,19 +253,19 @@ export default function Home() {
   const date = data?.date ?? "";
 
   return (
-    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'IBM Plex Mono', 'Courier New', monospace", color: "#fff", maxWidth: "480px", margin: "0 auto", padding: "0 0 40px" }}>
+    <div style={{ background: "#1A1208", minHeight: "100vh", fontFamily: "'IBM Plex Mono', 'Courier New', monospace", color: "#fff", maxWidth: "480px", margin: "0 auto", padding: "0 0 40px" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Bebas+Neue&display=swap');
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         * { box-sizing: border-box; }
-        ::-webkit-scrollbar { height: 4px; background: #111; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        ::-webkit-scrollbar { height: 4px; background: #221809; }
+        ::-webkit-scrollbar-thumb { background: #4A3418; border-radius: 2px; }
       `}</style>
 
-      <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid #181818", position: "sticky", top: 0, background: "#0a0a0a", zIndex: 10 }}>
+      <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid #2A1C0A", position: "sticky", top: 0, background: "#1A1208", zIndex: 10 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
           <h1 style={{ fontSize: "28px", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em", color: "#fff", margin: 0 }}>NBA SCORES</h1>
-          <span style={{ fontSize: "11px", color: "#444", letterSpacing: "0.05em" }}>{date}</span>
+          <span style={{ fontSize: "11px", color: "#5A4020", letterSpacing: "0.05em" }}>{date}</span>
         </div>
       </div>
 
@@ -277,7 +277,7 @@ export default function Home() {
               LIVE
             </div>
             {live.map((g, i) => (
-              <div key={i} style={{ background: "#110000", border: "1px solid #2d1111", borderRadius: "12px", padding: "16px 20px", marginBottom: "8px" }}>
+              <div key={i} style={{ background: "#1A0800", border: "1px solid #3D1A08", borderRadius: "12px", padding: "16px 20px", marginBottom: "8px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
@@ -307,7 +307,7 @@ export default function Home() {
           <div style={{ marginBottom: "20px" }}>
             <div style={{ fontSize: "10px", color: "#555", letterSpacing: "0.15em", fontWeight: 700, marginBottom: "8px" }}>UPCOMING</div>
             {upcoming.map((g, i) => (
-              <div key={i} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: "10px", padding: "12px 16px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <div key={i} style={{ background: "#190E05", border: "1px solid #2E2010", borderRadius: "10px", padding: "12px 16px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
                     <TeamLogo abbr={g.awayAbbr} size={36} />
@@ -316,7 +316,7 @@ export default function Home() {
                 </div>
                 <div style={{ textAlign: "center", flexShrink: 0 }}>
                   <div style={{ fontSize: "12px", color: "#555" }}>{g.time}</div>
-                  <div style={{ fontSize: "10px", color: "#333", marginTop: "4px" }}>{g.awayProb}% – {g.homeProb}%</div>
+                  <div style={{ fontSize: "10px", color: "#4A3418", marginTop: "4px" }}>{g.awayProb}% – {g.homeProb}%</div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1, justifyContent: "flex-end" }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
@@ -337,7 +337,7 @@ export default function Home() {
         )}
 
         {!data && (
-          <div style={{ textAlign: "center", color: "#333", fontSize: "12px", paddingTop: "40px" }}>Loading…</div>
+          <div style={{ textAlign: "center", color: "#4A3418", fontSize: "12px", paddingTop: "40px" }}>Loading…</div>
         )}
       </div>
     </div>
