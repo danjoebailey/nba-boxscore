@@ -271,7 +271,7 @@ export default function Home() {
       <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid #A07428", position: "sticky", top: 0, background: "#C8943A", zIndex: 10 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
           <h1 style={{ fontSize: "28px", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em", color: "#111", margin: 0 }}>NBA SCORES</h1>
-          <span style={{ fontSize: "11px", color: "#6B4A1A", letterSpacing: "0.05em" }}>{date}</span>
+          <span style={{ fontSize: "11px", color: "#111", letterSpacing: "0.05em", fontWeight: 600 }}>{date}</span>
         </div>
       </div>
 
