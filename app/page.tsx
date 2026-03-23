@@ -40,7 +40,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
       .catch(() => { setError(true); setLoading(false); });
   }, [playerName]);
 
-  const cell = (val: string, color = "#7A6030") => (
+  const cell = (val: string, color = "#111") => (
     <td style={{ padding: "8px 6px", textAlign: "center", color, fontSize: "11px" }}>{val}</td>
   );
 
@@ -72,12 +72,12 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
       <td colSpan={2} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#8A7040", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
         25-26 AVG · {stats.gp}GP
       </td>
-      {cell(`${stats.mpg}`, "#666")}
+      {cell(`${stats.mpg}`, "#5A4A2A")}
       {cell(`${stats.pts}`, accentColor)}
       {cell(`${stats.reb}`)}
       {cell(`${stats.ast}`)}
-      {cell(`${stats.fg_pct}%`, "#aaa")}
-      {cell(`${stats.three_pct}%`, "#aaa")}
+      {cell(`${stats.fg_pct}%`)}
+      {cell(`${stats.three_pct}%`)}
       {cell(`${stats.stl}`)}
       {cell(`${stats.blk}`)}
       {cell(`${stats.to}`)}
