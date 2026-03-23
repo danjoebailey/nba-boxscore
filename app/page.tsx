@@ -261,6 +261,7 @@ function StandingsTable({ teams }: { teams: any[] }) {
             <th style={{ padding: "6px 8px", textAlign: "center", fontWeight: 600 }}>L</th>
             <th style={{ padding: "6px 8px", textAlign: "center", fontWeight: 600 }}>PCT</th>
             <th style={{ padding: "6px 8px", textAlign: "center", fontWeight: 600 }}>GB</th>
+            <th style={{ padding: "6px 8px", textAlign: "center", fontWeight: 600 }}>L10</th>
           </tr>
         </thead>
         <tbody>
@@ -272,7 +273,7 @@ function StandingsTable({ teams }: { teams: any[] }) {
               <>
                 {showDivider && (
                   <tr key={`divider-${i}`}>
-                    <td colSpan={6} style={{ padding: 0, height: "1px", background: "#C9A84C" }} />
+                    <td colSpan={7} style={{ padding: 0, height: "1px", background: "#C9A84C" }} />
                   </tr>
                 )}
                 <tr key={team.abbr} style={{ background: rowBg, borderBottom: "1px solid #D4B870" }}>
@@ -285,6 +286,7 @@ function StandingsTable({ teams }: { teams: any[] }) {
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.losses}</td>
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.pctDisplay}</td>
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#5A4A2A" }}>{team.gb}</td>
+                  <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.l10}</td>
                 </tr>
               </>
             );

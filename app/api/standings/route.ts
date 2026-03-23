@@ -29,6 +29,7 @@ function parseConference(conf: any) {
         pctDisplay: getStat(stats, "winPercent"),
         gb: getStat(stats, "gamesBehind"),
         gbNum: getStatNum(stats, "gamesBehind"),
+        l10: getStat(stats, "Last Ten Games"),
       };
     })
     .sort((a, b) => b.wins - a.wins || a.losses - b.losses)
