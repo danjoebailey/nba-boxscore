@@ -66,6 +66,7 @@ function transformPlayers(teamData: any): any[] {
       const s = a.stats;
       const [fgm, fga] = parseSplit(s[2] ?? "0-0");
       const [tpm, tpa] = parseSplit(s[3] ?? "0-0");
+      const [ftm, fta] = parseSplit(s[4] ?? "0-0");
       const minRaw = s[0] ?? "0";
       return {
         name: abbreviateName(a.athlete?.displayName ?? "Unknown"),
@@ -77,6 +78,8 @@ function transformPlayers(teamData: any): any[] {
         fga,
         tpm,
         tpa,
+        ftm,
+        fta,
         stl: toInt(s[8]),
         blk: toInt(s[9]),
         to: toInt(s[7]),

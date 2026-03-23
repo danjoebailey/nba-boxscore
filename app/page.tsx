@@ -17,7 +17,7 @@ function TeamLogo({ abbr, size = 32 }: { abbr: string; size?: number }) {
   );
 }
 
-const COLS = 12;
+const COLS = 13;
 
 async function fetchSeasonStats(playerName: string) {
   const response = await fetch("/api/season-stats", {
@@ -108,6 +108,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>AST</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>FG</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>3PT</th>
+            <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>FT</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>STL</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>BLK</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>TO</th>
@@ -143,6 +144,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.ast}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#111", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#111", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111", fontSize: "11px" }}>{p.ftm}/{p.fta}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.stl}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.blk}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.to}</td>
