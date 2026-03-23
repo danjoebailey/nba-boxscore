@@ -17,18 +17,23 @@ function getStatNum(stats: any[], name: string): number {
 
 function parseConference(conf: any) {
   const entries: any[] = conf.standings?.entries ?? [];
-  return entries.map((entry: any) => {
-    const stats: any[] = entry.stats ?? [];
-    return {
-      name: entry.team?.displayName ?? "",
-      abbr: entry.team?.abbreviation ?? "",
-      wins: getStatNum(stats, "wins"),
-      losses: getStatNum(stats, "losses"),
-      pct: getStat(stats, "winPercent"),
-      gb: getStat(stats, "gamesBehind"),
-      l10: getStat(stats, "lastTen"),
-    };
-  });
+  return entries
+    .map((entry: any) => {
+      const stats: any[] = entry.stats ?? [];
+      return {
+        name: entry.team?.displayName ?? "",
+        abbr: entry.team?.abbreviation ?? "",
+        wins: getStatNum(stats, "wins"),
+        losses: getStatNum(stats, "losses"),
+        pct: getStatNum(stats, "winPercent"),
+        pctDisplay: getStat(stats, "winPercent"),
+        gb: getStat(stats, "gamesBehind"),
+        gbNum: getStatNum(stats, "gamesBehind"),
+        l10: getStat(stats, "lastTen"),
+      };
+    })
+    .sort((a, b) => b.wins - a.wins || a.losses - b.losses)
+    .map(({ pct: _pct, gbNum: _gbNum, ...team }) => team);
 }
 
 export async function GET() {

@@ -284,7 +284,7 @@ function StandingsTable({ teams }: { teams: any[] }) {
                   </td>
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#111", fontWeight: 700 }}>{team.wins}</td>
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.losses}</td>
-                  <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.pct}</td>
+                  <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.pctDisplay}</td>
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#5A4A2A" }}>{team.gb}</td>
                   <td style={{ padding: "9px 8px", textAlign: "center", color: "#111" }}>{team.l10}</td>
                 </tr>
