@@ -92,7 +92,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
   const pmLabel = (pm: number) => pm > 0 ? `+${pm}` : `${pm}`;
   const rowBg = (i: number, isExpanded: boolean) => {
     if (isExpanded) return "#E8D49A";
-    return i % 2 === 0 ? "#F5E6C8" : "#EDD9A3";
+    return i % 2 === 0 ? "#DEC882" : "#F5E6C8";
   };
 
   return (
@@ -130,7 +130,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
                 <tr
                   key={p.name}
                   onClick={() => toggle(p.name)}
-                  style={{ borderBottom: isExpanded ? "none" : "1px solid #D4B870", background: isExpanded ? "#E8D49A" : i % 2 === 0 ? "#F5E6C8" : "#EDD9A3", cursor: "pointer" }}
+                  style={{ borderBottom: isExpanded ? "none" : "1px solid #D4B870", background: isExpanded ? "#E8D49A" : i % 2 === 0 ? "#DEC882" : "#F5E6C8", cursor: "pointer" }}
                 >
                   <td style={{ padding: "8px 8px", fontWeight: 600, whiteSpace: "nowrap", color: isExpanded ? "#111" : "#1a1a1a", position: "sticky", left: 0, zIndex: 1, background: bg }}>
                     <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#8A7040" }}>{isExpanded ? "▼" : "▶"}</span>
