@@ -40,16 +40,16 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
       .catch(() => { setError(true); setLoading(false); });
   }, [playerName]);
 
-  const cell = (val: string, color = "#aaa") => (
+  const cell = (val: string, color = "#7A6030") => (
     <td style={{ padding: "8px 6px", textAlign: "center", color, fontSize: "11px" }}>{val}</td>
   );
 
   if (loading) {
     return (
       <tr>
-        <td colSpan={COLS} style={{ padding: "10px 12px", background: "#0d0d0d", borderBottom: "1px solid #1a1a1a" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#555", fontSize: "11px" }}>
-            <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", background: "#333", animation: "pulse 1s infinite" }} />
+        <td colSpan={COLS} style={{ padding: "10px 12px", background: "#E8D49A", borderBottom: "1px solid #D4B870" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#8A7040", fontSize: "11px" }}>
+            <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", background: "#C9A84C", animation: "pulse 1s infinite" }} />
             Loading season averages…
           </div>
         </td>
@@ -60,7 +60,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
   if (error || !stats) {
     return (
       <tr>
-        <td colSpan={COLS} style={{ padding: "8px 12px", background: "#0d0d0d", color: "#555", fontSize: "11px", borderBottom: "1px solid #1a1a1a" }}>
+        <td colSpan={COLS} style={{ padding: "8px 12px", background: "#E8D49A", color: "#8A7040", fontSize: "11px", borderBottom: "1px solid #D4B870" }}>
           Could not load season stats.
         </td>
       </tr>
@@ -68,8 +68,8 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
   }
 
   return (
-    <tr style={{ background: "#0d0d0d", borderBottom: "1px solid #333" }}>
-      <td colSpan={2} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#666", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
+    <tr style={{ background: "#E8D49A", borderBottom: "1px solid #C9A84C" }}>
+      <td colSpan={2} style={{ padding: "8px 8px 8px 16px", fontSize: "10px", color: "#8A7040", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
         25-26 AVG · {stats.gp}GP
       </td>
       {cell(`${stats.mpg}`, "#666")}
@@ -88,19 +88,19 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
 function PlayerTable({ players, accentColor }: { players: any[]; accentColor: string }) {
   const [expandedPlayer, setExpandedPlayer] = useState<string | null>(null);
   const toggle = (name: string) => setExpandedPlayer(prev => prev === name ? null : name);
-  const pmColor = (pm: number) => pm > 0 ? "#4ade80" : pm < 0 ? "#f87171" : "#666";
+  const pmColor = (pm: number) => pm > 0 ? "#2A7A3A" : pm < 0 ? "#B03020" : "#8A7040";
   const pmLabel = (pm: number) => pm > 0 ? `+${pm}` : `${pm}`;
   const rowBg = (i: number, isExpanded: boolean) => {
-    if (isExpanded) return "#161616";
-    return i % 2 === 0 ? "#111" : "#131313";
+    if (isExpanded) return "#E8D49A";
+    return i % 2 === 0 ? "#F5E6C8" : "#EDD9A3";
   };
 
   return (
     <div style={{ overflowX: "auto" }}>
       <table style={{ borderCollapse: "collapse", fontSize: "12px" }}>
         <thead>
-          <tr style={{ color: "#999", borderBottom: "1px solid #222" }}>
-            <th style={{ textAlign: "left", padding: "6px 8px", fontWeight: 600, letterSpacing: "0.05em", whiteSpace: "nowrap", position: "sticky", left: 0, background: "#111", zIndex: 2 }}>PLAYER</th>
+          <tr style={{ color: "#5A4A2A", borderBottom: "1px solid #D4B870" }}>
+            <th style={{ textAlign: "left", padding: "6px 8px", fontWeight: 600, letterSpacing: "0.05em", whiteSpace: "nowrap", position: "sticky", left: 0, background: "#F5E6C8", zIndex: 2 }}>PLAYER</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>POS</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600 }}>MIN</th>
             <th style={{ padding: "6px 6px", textAlign: "center", fontWeight: 600, color: accentColor }}>PTS</th>
@@ -124,28 +124,28 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
               <>
                 {showDivider && (
                   <tr key={`divider-${i}`}>
-                    <td colSpan={12} style={{ padding: 0, height: "1px", background: "#333" }} />
+                    <td colSpan={12} style={{ padding: 0, height: "1px", background: "#C9A84C" }} />
                   </tr>
                 )}
                 <tr
                   key={p.name}
                   onClick={() => toggle(p.name)}
-                  style={{ borderBottom: isExpanded ? "none" : "1px solid #1a1a1a", background: isExpanded ? "#161616" : i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)", cursor: "pointer" }}
+                  style={{ borderBottom: isExpanded ? "none" : "1px solid #D4B870", background: isExpanded ? "#E8D49A" : i % 2 === 0 ? "#F5E6C8" : "#EDD9A3", cursor: "pointer" }}
                 >
-                  <td style={{ padding: "8px 8px", fontWeight: 600, whiteSpace: "nowrap", color: isExpanded ? "#fff" : "#f0f0f0", position: "sticky", left: 0, zIndex: 1, background: bg }}>
-                    <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#555" }}>{isExpanded ? "▼" : "▶"}</span>
+                  <td style={{ padding: "8px 8px", fontWeight: 600, whiteSpace: "nowrap", color: isExpanded ? "#111" : "#1a1a1a", position: "sticky", left: 0, zIndex: 1, background: bg }}>
+                    <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#8A7040" }}>{isExpanded ? "▼" : "▶"}</span>
                     {p.name}
                   </td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#888", fontSize: "11px" }}>{p.pos}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#888", fontSize: "11px" }}>{p.min}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#7A6030", fontSize: "11px" }}>{p.pos}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#7A6030", fontSize: "11px" }}>{p.min}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: accentColor, fontSize: "14px" }}>{p.pts}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#ccc" }}>{p.reb}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#ccc" }}>{p.ast}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#bbb", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#bbb", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#aaa" }}>{p.stl}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#aaa" }}>{p.blk}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#aaa" }}>{p.to}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#2A2A2A" }}>{p.reb}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#2A2A2A" }}>{p.ast}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#3A3020", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#3A3020", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#4A3A20" }}>{p.stl}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#4A3A20" }}>{p.blk}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#4A3A20" }}>{p.to}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: pmColor(pm), fontSize: "12px" }}>{pmLabel(pm)}</td>
                 </tr>
                 {isExpanded && (
@@ -167,67 +167,67 @@ function GameCard({ game }: { game: any }) {
   const isOT = game.home.q.length > 4;
 
   return (
-    <div style={{ background: "#111", border: "1px solid #222", borderRadius: "12px", overflow: "hidden", marginBottom: "12px" }}>
+    <div style={{ background: "#F0DDB0", border: "1px solid #D4B870", borderRadius: "12px", overflow: "hidden", marginBottom: "12px" }}>
       <div onClick={() => setExpanded(e => !e)} style={{ cursor: "pointer", padding: "16px 20px", userSelect: "none" }}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "12px", position: "relative" }}>
-          <span style={{ fontSize: "11px", color: "#555", letterSpacing: "0.1em", fontWeight: 600 }}>{isOT ? "FINAL/OT" : "FINAL"}</span>
-          <span style={{ fontSize: "11px", color: "#444", position: "absolute", right: 0 }}>{expanded ? "▲" : "▼"}</span>
+          <span style={{ fontSize: "11px", color: "#8A7040", letterSpacing: "0.1em", fontWeight: 600 }}>{isOT ? "FINAL/OT" : "FINAL"}</span>
+          <span style={{ fontSize: "11px", color: "#B0903A", position: "absolute", right: 0 }}>{expanded ? "▲" : "▼"}</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.away.abbr} size={52} />
-              <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "away" ? "#fff" : "#555", letterSpacing: "0.05em" }}>{game.away.abbr}</span>
+              <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "away" ? "#111" : "#B0A080", letterSpacing: "0.05em" }}>{game.away.abbr}</span>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: "100px", justifyContent: "center" }}>
-            <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "away" ? "#fff" : "#444", letterSpacing: "-0.03em" }}>{game.away.score}</span>
-            <span style={{ color: "#333", fontSize: "16px" }}>–</span>
-            <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "home" ? "#fff" : "#444", letterSpacing: "-0.03em" }}>{game.home.score}</span>
+            <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "away" ? "#111" : "#C0A87A", letterSpacing: "-0.03em" }}>{game.away.score}</span>
+            <span style={{ color: "#C9A84C", fontSize: "16px" }}>–</span>
+            <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "home" ? "#111" : "#C0A87A", letterSpacing: "-0.03em" }}>{game.home.score}</span>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.home.abbr} size={52} />
-              <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "home" ? "#fff" : "#555", letterSpacing: "0.05em" }}>{game.home.abbr}</span>
+              <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "home" ? "#111" : "#B0A080", letterSpacing: "0.05em" }}>{game.home.abbr}</span>
             </div>
           </div>
         </div>
       </div>
 
       {expanded && (
-        <div style={{ borderTop: "1px solid #1d1d1d" }}>
-          <div style={{ padding: "12px 16px", borderBottom: "1px solid #1a1a1a" }}>
+        <div style={{ borderTop: "1px solid #D4B870" }}>
+          <div style={{ padding: "12px 16px", borderBottom: "1px solid #D4B870" }}>
             <div style={{ display: "grid", gridTemplateColumns: `auto repeat(${game.away.q.length}, 1fr)`, gap: "4px", alignItems: "center" }}>
               <div />
               {game.away.q.map((_: number, i: number) => (
-                <div key={i} style={{ fontSize: "9px", color: "#666", textAlign: "center" }}>
+                <div key={i} style={{ fontSize: "9px", color: "#8A7040", textAlign: "center" }}>
                   {i < 4 ? `Q${i + 1}` : `OT${i - 3}`}
                 </div>
               ))}
-              <div style={{ fontSize: "10px", fontWeight: 700, color: "#888", letterSpacing: "0.04em", paddingRight: "8px" }}>{game.away.abbr}</div>
+              <div style={{ fontSize: "10px", fontWeight: 700, color: "#7A6030", letterSpacing: "0.04em", paddingRight: "8px" }}>{game.away.abbr}</div>
               {game.away.q.map((q: number, i: number) => {
                 const hq = game.home.q[i];
                 return (
-                  <div key={i} style={{ background: "#0d0d0d", borderRadius: "4px", padding: "6px 4px", textAlign: "center", fontSize: "12px", fontWeight: 700, color: q > hq ? "#fff" : "#555" }}>{q}</div>
+                  <div key={i} style={{ background: "#E8D49A", borderRadius: "4px", padding: "6px 4px", textAlign: "center", fontSize: "12px", fontWeight: 700, color: q > hq ? "#111" : "#B0A080" }}>{q}</div>
                 );
               })}
-              <div style={{ fontSize: "10px", fontWeight: 700, color: "#888", letterSpacing: "0.04em", paddingRight: "8px" }}>{game.home.abbr}</div>
+              <div style={{ fontSize: "10px", fontWeight: 700, color: "#7A6030", letterSpacing: "0.04em", paddingRight: "8px" }}>{game.home.abbr}</div>
               {game.home.q.map((hq: number, i: number) => {
                 const q = game.away.q[i];
                 return (
-                  <div key={i} style={{ background: "#0d0d0d", borderRadius: "4px", padding: "6px 4px", textAlign: "center", fontSize: "12px", fontWeight: 700, color: hq > q ? "#fff" : "#555" }}>{hq}</div>
+                  <div key={i} style={{ background: "#E8D49A", borderRadius: "4px", padding: "6px 4px", textAlign: "center", fontSize: "12px", fontWeight: 700, color: hq > q ? "#111" : "#B0A080" }}>{hq}</div>
                 );
               })}
             </div>
           </div>
-          <div style={{ display: "flex", borderBottom: "1px solid #1a1a1a" }}>
+          <div style={{ display: "flex", borderBottom: "1px solid #D4B870" }}>
             {["away", "home"].map(side => {
               const team = game[side];
               const isActive = activeTeam === side;
               const isLight = team.color === "#FFFFFF" || team.color === "#AAAAAA";
-              const underline = isLight ? "#aaa" : team.color;
+              const underline = isLight ? "#8A7040" : team.color;
               return (
-                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "#1a1a1a" : "transparent", color: isActive ? "#fff" : "#555", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
+                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "#E8D49A" : "transparent", color: isActive ? "#111" : "#8A7040", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
                   <TeamLogo abbr={team.abbr} size={18} />
                   {team.name}
                 </button>
@@ -264,8 +264,8 @@ export default function Home() {
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Bebas+Neue&display=swap');
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         * { box-sizing: border-box; }
-        ::-webkit-scrollbar { height: 4px; background: #111; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        ::-webkit-scrollbar { height: 4px; background: #EDD9A3; }
+        ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 2px; }
       `}</style>
 
       <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid #A07428", position: "sticky", top: 0, background: "#C8943A", zIndex: 10 }}>
