@@ -174,7 +174,7 @@ function GameCard({ game }: { game: any }) {
           <span style={{ fontSize: "11px", color: "#B0903A", position: "absolute", right: 0 }}>{expanded ? "▲" : "▼"}</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.away.abbr} size={52} />
               <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "away" ? "#111" : "#B0A080", letterSpacing: "0.05em" }}>{game.away.abbr}</span>
@@ -185,7 +185,7 @@ function GameCard({ game }: { game: any }) {
             <span style={{ color: "#C9A84C", fontSize: "16px" }}>–</span>
             <span style={{ fontSize: "26px", fontWeight: 900, color: winner === "home" ? "#111" : "#C0A87A", letterSpacing: "-0.03em" }}>{game.home.score}</span>
           </div>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.home.abbr} size={52} />
               <span style={{ fontSize: "12px", fontWeight: 800, color: winner === "home" ? "#111" : "#B0A080", letterSpacing: "0.05em" }}>{game.home.abbr}</span>
