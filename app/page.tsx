@@ -136,16 +136,16 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
                     <span style={{ marginRight: "5px", fontSize: "9px", color: isExpanded ? accentColor : "#8A7040" }}>{isExpanded ? "▼" : "▶"}</span>
                     {p.name}
                   </td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#7A6030", fontSize: "11px" }}>{p.pos}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#7A6030", fontSize: "11px" }}>{p.min}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#5A4A2A", fontSize: "11px" }}>{p.pos}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#5A4A2A", fontSize: "11px" }}>{p.min}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: accentColor, fontSize: "14px" }}>{p.pts}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#2A2A2A" }}>{p.reb}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#2A2A2A" }}>{p.ast}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#3A3020", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#3A3020", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#4A3A20" }}>{p.stl}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#4A3A20" }}>{p.blk}</td>
-                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#4A3A20" }}>{p.to}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.reb}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.ast}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111", fontSize: "11px" }}>{p.fgm}/{p.fga}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111", fontSize: "11px" }}>{p.tpm}/{p.tpa}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.stl}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.blk}</td>
+                  <td style={{ padding: "8px 6px", textAlign: "center", color: "#111" }}>{p.to}</td>
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: pmColor(pm), fontSize: "12px" }}>{pmLabel(pm)}</td>
                 </tr>
                 {isExpanded && (
