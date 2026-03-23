@@ -78,6 +78,7 @@ function SeasonStatsRow({ playerName, accentColor }: { playerName: string; accen
       {cell(`${stats.ast}`)}
       {cell(`${stats.fg_pct}%`)}
       {cell(`${stats.three_pct}%`)}
+      {cell(`${stats.ft_pct}%`)}
       {cell(`${stats.stl}`)}
       {cell(`${stats.blk}`)}
       {cell(`${stats.to}`)}

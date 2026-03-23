@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
     ast:       +((get("avgAssists")      ?? 0) as number).toFixed(1),
     fg_pct:    +((get("fieldGoalPct")    ?? 0) as number).toFixed(1),
     three_pct: +((get("threePointPct")   ?? 0) as number).toFixed(1),
+    ft_pct:    +((get("freeThrowPct")    ?? 0) as number).toFixed(1),
     stl:       +((get("avgSteals")       ?? 0) as number).toFixed(1),
     blk:       +((get("avgBlocks")       ?? 0) as number).toFixed(1),
     to:        +((get("avgTurnovers")    ?? 0) as number).toFixed(1),
