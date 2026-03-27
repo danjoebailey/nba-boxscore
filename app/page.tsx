@@ -152,7 +152,7 @@ function PlayerTable({ players, accentColor }: { players: any[]; accentColor: st
                   <td style={{ padding: "8px 6px", textAlign: "center", fontWeight: 700, color: pmColor(pm), fontSize: "12px" }}>{pmLabel(pm)}</td>
                 </tr>
                 {isExpanded && (
-                  <SeasonStatsRow key={`${p.name}-season`} playerName={p.name} accentColor={accentColor} />
+                  <SeasonStatsRow key={`${p.name}-season`} playerName={p.fullName ?? p.name} accentColor={accentColor} />
                 )}
               </>
             );

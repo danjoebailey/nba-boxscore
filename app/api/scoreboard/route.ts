@@ -70,6 +70,7 @@ function transformPlayers(teamData: any): any[] {
       const minRaw = s[0] ?? "0";
       return {
         name: abbreviateName(a.athlete?.displayName ?? "Unknown"),
+        fullName: a.athlete?.displayName ?? "Unknown",
         pos: a.athlete?.position?.abbreviation ?? "?",
         pts: toInt(s[1]),
         reb: toInt(s[5]),
