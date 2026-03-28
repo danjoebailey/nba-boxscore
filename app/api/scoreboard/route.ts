@@ -129,10 +129,11 @@ export async function GET() {
     (e) => e.competitions?.[0]?.status?.type?.state === "pre"
   );
 
-  // Fetch box scores for completed games in parallel
-  const boxScores = await Promise.all(
-    finalEvents.map((e) => fetchBoxScore(e.id))
-  );
+  // Fetch box scores for completed and live games in parallel
+  const [boxScores, liveBoxScores] = await Promise.all([
+    Promise.all(finalEvents.map((e) => fetchBoxScore(e.id))),
+    Promise.all(liveEvents.map((e) => fetchBoxScore(e.id))),
+  ]);
 
   const games = finalEvents.map((event, i) => {
     const comp = event.competitions[0];
@@ -152,20 +153,29 @@ export async function GET() {
     };
   });
 
-  const live = liveEvents.map((event) => {
+  const live = liveEvents.map((event, i) => {
     const comp = event.competitions[0];
     const status = comp.status;
     const home = comp.competitors.find((c: any) => c.homeAway === "home") ?? comp.competitors[1];
     const away = comp.competitors.find((c: any) => c.homeAway === "away") ?? comp.competitors[0];
+    const box = liveBoxScores[i];
+    const homeId = home.team?.id;
+    const awayId = away.team?.id;
+    const homePlayers = box ? transformPlayers(box.boxscore?.players?.find((p: any) => p.team?.id === homeId)) : [];
+    const awayPlayers = box ? transformPlayers(box.boxscore?.players?.find((p: any) => p.team?.id === awayId)) : [];
     return {
       homeAbbr: home.team?.abbreviation ?? "",
       homeName: home.team?.displayName ?? "",
       homeScore: parseInt(home.score ?? "0", 10),
+      homeColor: teamColor(home.team?.color ?? ""),
       awayAbbr: away.team?.abbreviation ?? "",
       awayName: away.team?.displayName ?? "",
       awayScore: parseInt(away.score ?? "0", 10),
+      awayColor: teamColor(away.team?.color ?? ""),
       quarter: status.period ?? 0,
       clock: status.displayClock ?? "",
+      homePlayers,
+      awayPlayers,
     };
   });
 

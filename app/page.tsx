@@ -249,6 +249,70 @@ function GameCard({ game }: { game: any }) {
   );
 }
 
+function LiveGameCard({ game }: { game: any }) {
+  const [expanded, setExpanded] = useState(false);
+  const [activeTeam, setActiveTeam] = useState("home");
+
+  return (
+    <div style={{ background: "#110000", border: "1px solid #2d1111", borderRadius: "12px", overflow: "hidden", marginBottom: "8px" }}>
+      <div onClick={() => setExpanded(e => !e)} style={{ cursor: "pointer", padding: "16px 20px", userSelect: "none" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
+              <TeamLogo abbr={game.awayAbbr} size={46} />
+              <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{game.awayAbbr}</span>
+            </div>
+            <div style={{ fontSize: "28px", fontWeight: 900, color: game.awayScore > game.homeScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{game.awayScore}</div>
+          </div>
+          <div style={{ padding: "0 12px", textAlign: "center" }}>
+            <div style={{ fontSize: "10px", color: "#e53e3e", fontWeight: 700 }}>Q{game.quarter}</div>
+            <div style={{ fontSize: "16px", color: "#e53e3e", fontWeight: 700 }}>{game.clock}</div>
+            <div style={{ fontSize: "9px", color: "#555", marginTop: "4px" }}>{expanded ? "▲" : "▼"}</div>
+          </div>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ fontSize: "28px", fontWeight: 900, color: game.homeScore > game.awayScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{game.homeScore}</div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
+              <TeamLogo abbr={game.homeAbbr} size={46} />
+              <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{game.homeAbbr}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {expanded && (
+        <div style={{ borderTop: "1px solid #2d1111" }}>
+          <div style={{ display: "flex", borderBottom: "1px solid #2d1111" }}>
+            {(["away", "home"] as const).map(side => {
+              const abbr = side === "away" ? game.awayAbbr : game.homeAbbr;
+              const name = side === "away" ? game.awayName : game.homeName;
+              const color = side === "away" ? game.awayColor : game.homeColor;
+              const isActive = activeTeam === side;
+              const isLight = color === "#FFFFFF" || color === "#AAAAAA";
+              const underline = isLight ? "#888" : color;
+              return (
+                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "#1a0a0a" : "transparent", color: isActive ? "#f0e0c0" : "#555", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
+                  <TeamLogo abbr={abbr} size={18} />
+                  {name}
+                </button>
+              );
+            })}
+          </div>
+          <div style={{ padding: "0 4px 12px" }}>
+            {(() => {
+              const color = activeTeam === "away" ? game.awayColor : game.homeColor;
+              const accentColor = (color === "#FFFFFF" || color === "#AAAAAA") ? "#e0e0e0" : color;
+              const players = activeTeam === "away" ? game.awayPlayers : game.homePlayers;
+              return players.length > 0
+                ? <PlayerTable players={players} accentColor={accentColor} />
+                : <div style={{ textAlign: "center", color: "#555", fontSize: "12px", padding: "20px 0" }}>No stats yet</div>;
+            })()}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function StandingsTable({ teams }: { teams: any[] }) {
   return (
     <div style={{ overflowX: "auto" }}>
@@ -461,30 +525,7 @@ export default function Home() {
                 <span style={{ display: "inline-block", width: "6px", height: "6px", background: "#e53e3e", borderRadius: "50%", animation: "pulse 1.5s infinite" }} />
                 LIVE
               </div>
-              {live.map((g, i) => (
-                <div key={i} style={{ background: "#110000", border: "1px solid #2d1111", borderRadius: "12px", padding: "16px 20px", marginBottom: "8px" }}>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                        <TeamLogo abbr={g.awayAbbr} size={46} />
-                        <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
-                      </div>
-                      <div style={{ fontSize: "28px", fontWeight: 900, color: g.awayScore > g.homeScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{g.awayScore}</div>
-                    </div>
-                    <div style={{ padding: "0 12px", textAlign: "center" }}>
-                      <div style={{ fontSize: "10px", color: "#e53e3e", fontWeight: 700 }}>Q{g.quarter}</div>
-                      <div style={{ fontSize: "16px", color: "#e53e3e", fontWeight: 700 }}>{g.clock}</div>
-                    </div>
-                    <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
-                      <div style={{ fontSize: "28px", fontWeight: 900, color: g.homeScore > g.awayScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{g.homeScore}</div>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                        <TeamLogo abbr={g.homeAbbr} size={46} />
-                        <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {live.map((g, i) => <LiveGameCard key={i} game={g} />)}
             </div>
           )}
 
