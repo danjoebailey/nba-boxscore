@@ -254,34 +254,34 @@ function LiveGameCard({ game }: { game: any }) {
   const [activeTeam, setActiveTeam] = useState("home");
 
   return (
-    <div style={{ background: "#110000", border: "1px solid #2d1111", borderRadius: "12px", overflow: "hidden", marginBottom: "8px" }}>
+    <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", marginBottom: "8px" }}>
       <div onClick={() => setExpanded(e => !e)} style={{ cursor: "pointer", padding: "16px 20px", userSelect: "none" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.awayAbbr} size={46} />
-              <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{game.awayAbbr}</span>
+              <span style={{ fontSize: "12px", fontWeight: 800, color: "var(--lose)", letterSpacing: "0.05em" }}>{game.awayAbbr}</span>
             </div>
-            <div style={{ fontSize: "28px", fontWeight: 900, color: game.awayScore > game.homeScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{game.awayScore}</div>
+            <div style={{ fontSize: "28px", fontWeight: 900, color: game.awayScore > game.homeScore ? "var(--text1)" : "var(--lose2)", letterSpacing: "-0.02em" }}>{game.awayScore}</div>
           </div>
           <div style={{ padding: "0 12px", textAlign: "center" }}>
             <div style={{ fontSize: "10px", color: "#e53e3e", fontWeight: 700 }}>Q{game.quarter}</div>
             <div style={{ fontSize: "16px", color: "#e53e3e", fontWeight: 700 }}>{game.clock}</div>
-            <div style={{ fontSize: "9px", color: "#555", marginTop: "4px" }}>{expanded ? "▲" : "▼"}</div>
+            <div style={{ fontSize: "9px", color: "var(--arrow)", marginTop: "4px" }}>{expanded ? "▲" : "▼"}</div>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
-            <div style={{ fontSize: "28px", fontWeight: 900, color: game.homeScore > game.awayScore ? "#fff" : "#555", letterSpacing: "-0.02em" }}>{game.homeScore}</div>
+            <div style={{ fontSize: "28px", fontWeight: 900, color: game.homeScore > game.awayScore ? "var(--text1)" : "var(--lose2)", letterSpacing: "-0.02em" }}>{game.homeScore}</div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.homeAbbr} size={46} />
-              <span style={{ fontSize: "12px", fontWeight: 800, color: "#aaa", letterSpacing: "0.05em" }}>{game.homeAbbr}</span>
+              <span style={{ fontSize: "12px", fontWeight: 800, color: "var(--lose)", letterSpacing: "0.05em" }}>{game.homeAbbr}</span>
             </div>
           </div>
         </div>
       </div>
 
       {expanded && (
-        <div style={{ borderTop: "1px solid #2d1111" }}>
-          <div style={{ display: "flex", borderBottom: "1px solid #2d1111" }}>
+        <div style={{ borderTop: "1px solid var(--border)" }}>
+          <div style={{ display: "flex", borderBottom: "1px solid var(--border)" }}>
             {(["away", "home"] as const).map(side => {
               const abbr = side === "away" ? game.awayAbbr : game.homeAbbr;
               const name = side === "away" ? game.awayName : game.homeName;
@@ -290,7 +290,7 @@ function LiveGameCard({ game }: { game: any }) {
               const isLight = color === "#FFFFFF" || color === "#AAAAAA";
               const underline = isLight ? "#888" : color;
               return (
-                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "#1a0a0a" : "transparent", color: isActive ? "#f0e0c0" : "#555", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
+                <button key={side} onClick={() => setActiveTeam(side)} style={{ flex: 1, padding: "10px", border: "none", cursor: "pointer", background: isActive ? "var(--row-a)" : "transparent", color: isActive ? "var(--text1)" : "var(--text3)", fontWeight: 700, fontSize: "12px", borderBottom: isActive ? `2px solid ${underline}` : "2px solid transparent", transition: "all 0.15s", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontFamily: "inherit" }}>
                   <TeamLogo abbr={abbr} size={18} />
                   {name}
                 </button>
@@ -533,21 +533,21 @@ export default function Home() {
             <div style={{ marginBottom: "20px" }}>
               <div style={{ fontSize: "10px", color: "var(--text4)", letterSpacing: "0.15em", fontWeight: 700, marginBottom: "8px" }}>UPCOMING</div>
               {upcoming.map((g, i) => (
-                <div key={i} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: "10px", padding: "12px 16px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <div key={i} style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "10px", padding: "12px 16px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
                       <TeamLogo abbr={g.awayAbbr} size={36} />
-                      <span style={{ fontSize: "11px", fontWeight: 800, color: "#777", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
+                      <span style={{ fontSize: "11px", fontWeight: 800, color: "var(--lose)", letterSpacing: "0.05em" }}>{g.awayAbbr}</span>
                     </div>
                   </div>
                   <div style={{ textAlign: "center", flexShrink: 0 }}>
-                    <div style={{ fontSize: "12px", color: "#555" }}>{g.time}</div>
-                    <div style={{ fontSize: "10px", color: "#333", marginTop: "4px" }}>{g.awayProb}% – {g.homeProb}%</div>
+                    <div style={{ fontSize: "12px", color: "var(--text2)" }}>{g.time}</div>
+                    <div style={{ fontSize: "10px", color: "var(--text3)", marginTop: "4px" }}>{g.awayProb}% – {g.homeProb}%</div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1, justifyContent: "flex-end" }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
                       <TeamLogo abbr={g.homeAbbr} size={36} />
-                      <span style={{ fontSize: "11px", fontWeight: 800, color: "#777", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
+                      <span style={{ fontSize: "11px", fontWeight: 800, color: "var(--lose)", letterSpacing: "0.05em" }}>{g.homeAbbr}</span>
                     </div>
                   </div>
                 </div>
