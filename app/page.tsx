@@ -256,14 +256,7 @@ function LiveGameCard({ game }: { game: any }) {
   return (
     <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", marginBottom: "8px" }}>
       <div onClick={() => setExpanded(e => !e)} style={{ cursor: "pointer", padding: "16px 20px", userSelect: "none" }}>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "12px", position: "relative" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <span style={{ display: "inline-block", width: "6px", height: "6px", background: "#e53e3e", borderRadius: "50%", animation: "pulse 1.5s infinite" }} />
-            <span style={{ fontSize: "10px", color: "#e53e3e", fontWeight: 700, letterSpacing: "0.1em" }}>Q{game.quarter} · {game.clock}</span>
-          </div>
-          <span style={{ fontSize: "11px", color: "var(--arrow)", position: "absolute", right: 0 }}>{expanded ? "▲" : "▼"}</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
               <TeamLogo abbr={game.awayAbbr} size={46} />
@@ -271,7 +264,10 @@ function LiveGameCard({ game }: { game: any }) {
             </div>
             <div style={{ fontSize: "28px", fontWeight: 900, color: game.awayScore > game.homeScore ? "var(--text1)" : "var(--lose2)", letterSpacing: "-0.02em" }}>{game.awayScore}</div>
           </div>
-          <div style={{ padding: "0 12px", textAlign: "center", color: "var(--gold)", fontSize: "16px" }}>–</div>
+          <div style={{ padding: "0 12px", textAlign: "center" }}>
+            <div style={{ fontSize: "10px", color: "#e53e3e", fontWeight: 700 }}>Q{game.quarter}</div>
+            <div style={{ fontSize: "16px", color: "#e53e3e", fontWeight: 700 }}>{game.clock}</div>
+          </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
             <div style={{ fontSize: "28px", fontWeight: 900, color: game.homeScore > game.awayScore ? "var(--text1)" : "var(--lose2)", letterSpacing: "-0.02em" }}>{game.homeScore}</div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
@@ -279,6 +275,7 @@ function LiveGameCard({ game }: { game: any }) {
               <span style={{ fontSize: "12px", fontWeight: 800, color: "var(--lose)", letterSpacing: "0.05em" }}>{game.homeAbbr}</span>
             </div>
           </div>
+          <span style={{ fontSize: "11px", color: "var(--arrow)", position: "absolute", right: 0, top: 0 }}>{expanded ? "▲" : "▼"}</span>
         </div>
       </div>
 
